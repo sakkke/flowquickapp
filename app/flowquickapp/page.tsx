@@ -1,3 +1,4 @@
+import DirectionRadio from "@/components/DirectionRadio";
 import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
 
@@ -26,6 +27,7 @@ export default async function FlowquickApp() {
           <Image src={station.icon} alt="station" width={48} height={48} />
           <div>{station.name}</div>
         </div>
+        <DirectionRadio />
         <div>{minutesToTime(route.time)}</div>
         <div>
           {(crowd ?? []).map((crowd) => (
