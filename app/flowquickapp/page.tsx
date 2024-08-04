@@ -1,4 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
+import Image from "next/image";
 
 export default async function FlowquickApp() {
   const supabase = createClient();
@@ -17,7 +18,10 @@ export default async function FlowquickApp() {
   return (
     <div className="grid h-screen place-items-center">
       <div>
-        <div>{railways.name}</div>
+        <div className="flex gap-2 items-center">
+          <Image src={railways.icon} alt="railway" width={48} height={48} />
+          <div>{railways.name}</div>
+        </div>
         <div>{stations.name}</div>
         <div>{minutesToTime(routes.time)}</div>
         <div>
