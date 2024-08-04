@@ -3,9 +3,9 @@ import Image from "next/image";
 
 export default async function FlowquickApp() {
   const supabase = createClient();
-  const { data: railways } = await supabase.from("railways").select().single();
-  const { data: stations } = await supabase.from("stations").select().single();
-  const { data: routes } = await supabase.from("routes").select().single();
+  const { data: railway } = await supabase.from("railways").select().single();
+  const { data: station } = await supabase.from("stations").select().single();
+  const { data: route } = await supabase.from("routes").select().single();
   const { data: crowd } = await supabase.from("crowd").select();
 
   const minutesToTime = (minutes: number): string => {
@@ -19,11 +19,11 @@ export default async function FlowquickApp() {
     <div className="grid h-screen place-items-center">
       <div>
         <div className="flex gap-2 items-center">
-          <Image src={railways.icon} alt="railway" width={48} height={48} />
-          <div>{railways.name}</div>
+          <Image src={railway.icon} alt="railway" width={48} height={48} />
+          <div>{railway.name}</div>
         </div>
-        <div>{stations.name}</div>
-        <div>{minutesToTime(routes.time)}</div>
+        <div>{station.name}</div>
+        <div>{minutesToTime(route.time)}</div>
         <div>
           {(crowd ?? []).map((crowd) => (
             <div key={crowd.id}>{crowd.crowd_level}</div>
