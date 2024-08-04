@@ -7,12 +7,19 @@ export default async function FlowquickApp() {
   const { data: routes } = await supabase.from("routes").select().single();
   const { data: crowd } = await supabase.from("crowd").select();
 
+  const minutesToTime = (minutes: number): string => {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    const formattedMins = mins < 10 ? `0${mins}` : `${mins}`;
+    return `${hours}:${formattedMins}`;
+  };
+
   return (
     <div className="grid h-screen place-items-center">
       <div>
         <div>{railways.name}</div>
         <div>{stations.name}</div>
-        <div>{routes.time}</div>
+        <div>{minutesToTime(routes.time)}</div>
         <div>
           {(crowd ?? []).map((crowd) => (
             <div key={crowd.id}>{crowd.crowd_level}</div>
