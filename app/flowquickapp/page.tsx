@@ -22,7 +22,10 @@ export default async function FlowquickApp() {
           <Image src={railway.icon} alt="railway" width={48} height={48} />
           <div>{railway.name}</div>
         </div>
-        <div>{station.name}</div>
+        <div className="flex gap-2 items-center">
+          <Image src={station.icon} alt="station" width={48} height={48} />
+          <div>{station.name}</div>
+        </div>
         <div>{minutesToTime(route.time)}</div>
         <div>
           {(crowd ?? []).map((crowd) => (
